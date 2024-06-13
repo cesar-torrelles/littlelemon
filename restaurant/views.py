@@ -1,7 +1,21 @@
-from django.shortcuts import render
+from rest_framework import generics
+from rest_framework import viewsets
+from .models import *  # Import your model
+from .serializers import *  # Import your serializer
 
-# Create your views here.
-from django.http import HttpResponse
+class MenuItemView(generics.ListCreateAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer
 
-def index(request):
- return render(request, 'index.html', {})
+class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer
+
+class BookingViewSet(viewsets.ModelViewSet):
+    queryset = Menu.objects.all()
+    serializer_class = BookingSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+   queryset = User.objects.all()
+   serializer_class = UserSerializer
+   #permission_classes = [permissions.IsAuthenticated]
