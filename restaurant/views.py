@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from .models import *  # Import your model
 from .serializers import *  # Import your serializer
 
+
 class MenuItemView(generics.ListCreateAPIView):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
